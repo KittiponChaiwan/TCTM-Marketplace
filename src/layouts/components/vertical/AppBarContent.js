@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { Box, CardMedia, FormControl, Grid, IconButton, InputAdornment, OutlinedInput, Typography } from '@mui/material'
 
 // ** Material-UI Icons Imports
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 
@@ -94,7 +94,7 @@ const AppBarContent = props => {
     <Box sx={{ width: '100%', height: '90px' }}>
       <Grid container justifyContent='space-between' alignItems='center' sx={{ height: '100%' }}>
         <Grid item xl={2} xs={2}>
-          <Box sx={{ width: '210px', marginLeft: 2 }}>
+          <Box sx={{ width: '100%', marginLeft: 3 }}>
             <Link href='/' passHref>
               <CardMedia
                 component='img'
@@ -126,9 +126,6 @@ const AppBarContent = props => {
                     fullWidth
                     variant='outlined'
                     sx={{
-                      height: '40px',
-                      maxWidth: '250px',
-                      minWidth: '50px',
                       borderRadius: '12px',
                       border: '1.5px solid lightgray',
                       outline: 'none',
