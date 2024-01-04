@@ -208,13 +208,15 @@ const Payment = ({ usertype, invoice_id, orderdata, receipt }) => {
       }}
     >
       <Grid container spacing={3} rowSpacing={2}>
-        <Grid item xs={12} sm={12} md={12}>
+        <Grid item xs={12}>
           <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
             Payment Details
           </Typography>
         </Grid>
         <Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-         <Typography variant='subtitle1' sx={{ textAlign: 'start' }}> Stripe Payment Gateway </Typography>
+          <Typography variant='subtitle1' sx={{ textAlign: 'start' }}>
+            Stripe Payment Gateway
+          </Typography>
         </Grid>
       </Grid>
       <hr />
@@ -311,15 +313,16 @@ const Payment = ({ usertype, invoice_id, orderdata, receipt }) => {
 
       {usertype !== '2' && (
         <Grid container alignItems='center' spacing={3} rowSpacing={2}>
-          <Grid item xs={12} sm={12} md={6}>
+          <Grid item xs={12} sm={12} md={12} sx={{ display: 'flex' }}>
             <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
               Tracking Number
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={9}>
+          \
+          <Grid item xs={12}>
             <Typography variant='subtitle1' sx={{ textAlign: 'start' }}>
               {orderdata.tracking_number || 'Wait payment'}
-              <Grid item xs={12} sm={12} md={6}>
+              <Grid item xs={12}>
                 <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
                   Tracking Status
                 </Typography>
@@ -327,13 +330,12 @@ const Payment = ({ usertype, invoice_id, orderdata, receipt }) => {
               <TrackStatus TrackNo={orderdata.tracking_number} />
             </Typography>
           </Grid>
-
-          <Grid item xs={12} sm={12} md={6}>
+          <Grid item xs={12}>
             <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
               Receipt Download
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={9}>
+          <Grid item xs={12}>
             <Typography variant='subtitle1' sx={{ textAlign: 'start' }}>
               <Button
                 variant='outlined'
