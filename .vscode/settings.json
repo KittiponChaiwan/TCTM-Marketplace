@@ -2,5 +2,7 @@
     "cSpell.words": [
         "เก็บค่า",
         "จะเอาไปฝังใน"
-    ]
+    ],
+    "codegpt.model": "ChatGPT",
+    "codegpt.apiKey": "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"
 }

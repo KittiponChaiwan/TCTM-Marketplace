@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useRef } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
@@ -11,6 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dayjs from 'dayjs'
 import ReCAPTCHA from 'react-google-recaptcha'
+import ReactDOM from 'react-dom'
 
 // ** Material UI Imports
 import {
@@ -67,11 +68,36 @@ const RegisterPage = () => {
   })
 
   // คอมโพเนนต์ของ reCAPTCHA
-  const [recaptchaValue, setRecaptchaValue] = useState(false)
+   const recaptchaRef = useRef(null)
+   const [isVerified, setIsVerified] = useState(false)
 
   // สร้างฟังก์ชันเมื่อ reCAPTCHA ถูกยืนยัน
-  const handleRecaptchaChange= () => {
-    setRecaptchaValue(true)
+  const verifyCaptcha = async token => {
+    try {
+      const res = await axios.post(
+        `https://www.google.com/recaptcha/api/siteverify?secret=6Lfu5-ooAAAAAMKpuS9SL8rj7SE9z1OgoQ02Wcat&response=${token}`
+      )
+
+      if (res.data.success) {
+        return 'success!'
+      } else {
+        throw new Error('Failed Captcha')
+      }
+    } catch (error) {
+      console.log(error);
+      throw error
+
+    }
+  }
+
+  const handleCaptchaSubmission = async () => {
+    try {
+      const token = await recaptchaRef.current.executeAsync()
+      await verifyCaptcha(token)
+      setIsVerified(true)
+    } catch (error) {
+      setIsVerified(false)
+    }
   }
 
   // ** Hook
@@ -104,7 +130,7 @@ const RegisterPage = () => {
   // ฟังก์ชันบัณทึกค่าของ User
   const handleUserSet = event => {
     const userInput = event.target.value
-    if (/^[a-zA-Z]+$/.test(userInput) || userInput === '') {
+    if (/^[a-zA-Z0-9]+$/.test(userInput) || userInput === '') {
       setUser(userInput)
     }
   }
@@ -174,17 +200,15 @@ const RegisterPage = () => {
     setIsSubmitted(true)
 
     // ตรวจสอบว่า reCAPTCHA ถูกต้อง
-    if (!recaptchaValue) {
-      // กระทำเมื่อ reCAPTCHA ไม่ถูกต้อง (ตัวอย่าง: แสดงข้อความหรือบล็อกการส่ง)
-      console.log('Please complete the reCAPTCHA.')
-      
-      return
-    }
+    // if (!isVerified) {
+    //   // กระทำเมื่อ reCAPTCHA ไม่ถูกต้อง (ตัวอย่าง: แสดงข้อความหรือบล็อกการส่ง)
+    //   console.log('Please complete the reCAPTCHA.')
+
+    //   return
+    // }
 
     // ตรวจสอบค่าว่างอื่นๆ และดำเนินการตามปกติ
     // ...
-
-    
 
     // ตรวจสอบค่าว่างก่อนส่ง
     const fieldsToCheck = [user, password, email, firstname, lastname, company, address, tel, date]
@@ -428,8 +452,9 @@ const RegisterPage = () => {
             />
             {/* เพิ่ม reCAPTCHA ในแบบฟอร์ม */}
             <ReCAPTCHA
-              sitekey='6Lfu5-ooAAAAAMGil0g9-Q7SKKQKTmntoYO6arEu' // ใช้ Site Key ที่คุณได้จาก ReCAPTCHA
-              onChange={handleRecaptchaChange}
+              sitekey='6Lfu5-ooAAAAAMGil0g9-Q7SKKQKTmntoYO6arEu'
+              onChange={handleCaptchaSubmission}
+              ref={recaptchaRef}
             />
             {/* ---------- Checkbox ---------- */}
             <FormControlLabel
@@ -451,6 +476,8 @@ const RegisterPage = () => {
               fullWidth
               variant='contained'
               onClick={handleSubmitData}
+
+              // disabled={!isVerified}
               sx={{
                 backgroundColor: 'primary.main',
                 color: '#fff',

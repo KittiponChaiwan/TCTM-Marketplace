@@ -186,7 +186,7 @@ const ShowOrder = ({ productdata, updateProductData }) => {
                             }
                             onClick={() => handleApprovePage(item.sub_id, item.invoice_id)}
                           >
-                            Attach file
+                            Checkout
                           </Button>
                         </Grid>
                         <Grid item xs={12} md={2}>

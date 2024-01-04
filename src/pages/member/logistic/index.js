@@ -10,7 +10,7 @@ import { Box, Breadcrumbs, Card, Container, Divider, Grid, Tab, Hidden, Tabs, Ty
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 
 // ** Material Design Icons Imports
-import Shopping from 'mdi-material-ui/Shopping'
+import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import ChevronRight from 'mdi-material-ui/ChevronRight'
 
 // ** Component Import
@@ -117,7 +117,7 @@ const MyOrderPage = () => {
             <Grid container alignItems='center'>
               <Grid item xs={12} sm={8} md={8}>
                 <Typography variant='h4' fontSize='21px bold' color='#fff'>
-                  MyOrder
+                  Delivery Detail
                 </Typography>
                 <Breadcrumbs separator={<ChevronRight />} aria-label='breadcrumb' color='#fff'>
                   <Link href='/' passHref>
@@ -132,7 +132,7 @@ const MyOrderPage = () => {
               </Grid>
               <Hidden smDown>
                 <Grid item sm={4} md={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Shopping sx={{ fontSize: 72, color: '#fff' }} />
+                  <LocalShippingIcon sx={{ fontSize: 72, color: '#fff' }} />
                 </Grid>
               </Hidden>
             </Grid>

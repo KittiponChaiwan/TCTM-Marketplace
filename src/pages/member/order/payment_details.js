@@ -149,6 +149,10 @@ const Payment = ({ usertype, invoice_id, orderdata, receipt }) => {
     } catch (error) {
       console.log(error)
     }
+    Swal.fire({
+      icon: 'success',
+      title: 'Confirm Data Success'
+    })
   }
 
   // ฟังชันเก็บค่าตัวแปร Tracking
@@ -210,17 +214,7 @@ const Payment = ({ usertype, invoice_id, orderdata, receipt }) => {
           </Typography>
         </Grid>
         <Grid item xs={12} sm={12} md={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <img
-            src={
-              orderdata.invoice_file_name === null ||
-              orderdata.invoice_file_name === undefined ||
-              orderdata.invoice_file_name === '-'
-                ? '/payment/Nodata/Nodata.jpeg'
-                : `/payment/${orderdata.invoice_file_name}`
-            }
-            style={{ maxWidth: '40%', height: 'auto' }}
-            alt='Payment Details'
-          />
+         <Typography variant='subtitle1' sx={{ textAlign: 'start' }}> Stripe Payment Gateway </Typography>
         </Grid>
       </Grid>
       <hr />

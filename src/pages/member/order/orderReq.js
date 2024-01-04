@@ -15,7 +15,7 @@ import ChevronRight from 'mdi-material-ui/ChevronRight'
 
 // ** Component Imports
 import Payment from './payment'
-import TablePayment from './TablePayment'
+import TablePayment from './tablepayment'
 
 //** Axios Import
 import axios from 'axios'

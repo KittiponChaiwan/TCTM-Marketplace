@@ -47,22 +47,7 @@ const TablePayment = ({ productData }) => {
               </tr>
             </tbody>
           </table>
-          <Typography variant='body1' sx={{ p: '10px 0px 10px' }} gutterBottom>
-            Scan QR Code to pay for products.
-          </Typography>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <img
-              src='https://www.paymentscardsandmobile.com/wp-content/uploads/2020/05/PayPal-QR-code.png'
-              alt='QR Code'
-              style={{ maxWidth: '40%' }}
-            />
-          </div>
+      
         </div>
       </CardContent>
     </Card>

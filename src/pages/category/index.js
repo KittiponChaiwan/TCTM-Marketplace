@@ -341,4 +341,4 @@ export const getServerSideProps = async ({ query }) => {
   }
 }
 
-export default withAuth(Category)
+export default Category
