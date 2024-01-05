@@ -91,9 +91,9 @@ const AppBarContent = props => {
   }, [])
 
   return (
-    <Box sx={{ width: '100%', height: '90px' }}>
+    <Box sx={{ width: '100%', height: '100%' }}>
       <Grid container justifyContent='space-between' alignItems='center' sx={{ height: '100%' }}>
-        <Grid item xl={2} xs={2}>
+        <Grid item xs={3}>
           <Box sx={{ width: '100%', marginLeft: 3 }}>
             <Link href='/' passHref>
               <CardMedia
@@ -102,6 +102,8 @@ const AppBarContent = props => {
                 alt='logo'
                 sx={{
                   cursor: 'pointer',
+                  maxWidth: '85%', // ทำให้รูปภาพปรับตามความกว้าง
+                  maxheight: '70%', // ทำให้รูปภาพปรับตามความสูง
                   '&:hover': {
                     transform: 'scale(1.1)',
                     transition: 'all 0.3s ease'
@@ -111,7 +113,7 @@ const AppBarContent = props => {
             </Link>
           </Box>
         </Grid>
-        <Grid item xl={10} xs={10}>
+        <Grid item xs={8}>
           <Box sx={{ width: '100%' }}>
             <Grid container justifyContent='flex-end' alignItems='center' spacing={2}>
               <Grid item>

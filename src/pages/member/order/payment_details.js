@@ -318,7 +318,7 @@ const Payment = ({ usertype, invoice_id, orderdata, receipt }) => {
               Tracking Number
             </Typography>
           </Grid>
-          \
+
           <Grid item xs={12}>
             <Typography variant='subtitle1' sx={{ textAlign: 'start' }}>
               {orderdata.tracking_number || 'Wait payment'}
